@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="SignUpMainBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="350.0" style="-fx-background-image: url('file:///C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/img/bkgrnd.png');" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BankAppJFX.RegisterController">
+   <children>
+      <AnchorPane prefHeight="154.0" prefWidth="350.0">
+         <children>
+            <Text layoutX="128.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: white;" text="Sign Up" wrappingWidth="93.13671875">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Label fx:id="controlLable" alignment="CENTER" layoutX="36.0" layoutY="48.0" prefHeight="92.0" prefWidth="278.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold;" textFill="#ff1313">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <VBox alignment="CENTER" prefHeight="161.0" prefWidth="290.0" spacing="10.0">
+         <children>
+            <TextField fx:id="tf_firstName" prefHeight="39.0" prefWidth="290.0" promptText="First Name" style="-fx-background-color: transparent; -fx-border-width: 0 0 2px 0; -fx-border-color: white; -fx-text-fill: white;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="tf_lastName" prefHeight="39.0" prefWidth="290.0" promptText="Last Name" style="-fx-background-color: transparent; -fx-border-width: 0 0 2px 0; -fx-border-color: white; -fx-text-fill: white;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="tf_username" prefHeight="39.0" prefWidth="290.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-width: 0 0 2px 0; -fx-border-color: white; -fx-text-fill: white;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="tf_email" promptText="Email" style="-fx-background-color: transparent; -fx-border-width: 0 0 2px 0; -fx-border-color: white; -fx-text-fill: white;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </TextField>
+            <PasswordField fx:id="pf_password" onKeyPressed="#signUpOnEnter" prefHeight="37.0" prefWidth="290.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0 0 2px 0; -fx-border-color: white; -fx-text-fill: white;">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </PasswordField>
+         </children>
+         <VBox.margin>
+            <Insets bottom="5.0" left="30.0" right="30.0" top="5.0" />
+         </VBox.margin>
+      </VBox>
+      <HBox alignment="CENTER" prefHeight="113.0" prefWidth="350.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="113.0" prefWidth="242.0" spacing="10.0">
+               <children>
+                  <Label fx:id="controlLable1" prefHeight="25.0" prefWidth="190.0" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button alignment="CENTER" maxHeight="25.0" maxWidth="140.0" minHeight="25.0" minWidth="80.0" mnemonicParsing="false" onAction="#signUp" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #E7A2D7; -fx-background-radius: 100PX; -fx-font-family: Quicksand;" text="Sign Up" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="11.0" />
+                     </font>
+                  </Button>
+                  <Text onMouseClicked="#SignOut" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: white;" text="Return to Login" wrappingWidth="95.13671875" />
+               </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

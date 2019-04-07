@@ -1,0 +1,13 @@
+Bank App by CJ van der Smissen 
+YouTube: Intro to Computer Science
+https://www.youtube.com/watch?v=PnMjInhZT3o&list=PL1nur_zBzme7naZAUEB0TJ9kvpS-vDsAO
+https://github.com/introtocomputerscience/JavaBankApp
+
+Log in page by Yogesh Patel
+YouTube: ProgrammingKnowledge
+https://www.youtube.com/watch?v=NWcFTTbKbLs&list=PLS1QulWo1RIbqOzdu1jShN0xah41S6lLP
+http://www.codebind.com/
+
+JavaFX TableView by Rashid Coder
+YouTube: Rashid Coder
+https://www.youtube.com/watch?v=7uZjwyBK43E&list=PLQLb6feVH18W8W_fQLN5yySBfK6POe5it
