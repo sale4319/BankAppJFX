@@ -17,6 +17,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -39,7 +41,7 @@ public class RegisterController implements Initializable {
     public DbService dbservice = new DbService();
     private double x = 0, y = 0;
     private Stage stage;
-    
+
     @FXML
     private TextField tf_firstName;
     @FXML
@@ -51,21 +53,16 @@ public class RegisterController implements Initializable {
     @FXML
     private PasswordField pf_password;
     @FXML
-    private Label controlLable;
-    @FXML
-    private Label controlLable1;
-    @FXML
     private VBox SignUpMainBox;
-    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+
         makeDragable();
-        
+
     }
 
     private void makeDragable() {
@@ -147,10 +144,13 @@ public class RegisterController implements Initializable {
                 password = pf_password.getText();
             }
             if (warnings.length() > 0) {
-                controlLable.setText(warnings.toString());
+                Alert alert = new Alert(Alert.AlertType.WARNING, warnings.toString(), ButtonType.OK);
+                alert.showAndWait();
             } else {
                 if (dbservice.isTaken(tf_username.getText(), tf_email.getText())) {
-                    controlLable.setText("Username or email already taken.");
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "Username or email already taken.", ButtonType.OK);
+                    alert.showAndWait();
+                    
                 } else {
                     Statement statement = connection.createStatement();
 
@@ -163,7 +163,9 @@ public class RegisterController implements Initializable {
                         tf_username.clear();
                         tf_email.clear();
                         pf_password.clear();
-                        controlLable1.setText("User registered successfully");
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "User registered successfully", ButtonType.OK);
+                        alert.showAndWait();
+                        
                     }
                 }
             }

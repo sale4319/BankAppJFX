@@ -9,11 +9,11 @@ public class Bank implements Serializable {
 
     private DbService database = new DbService();
 
-    /*int openAccount(String firstName, String lastName, String ssn, CardType cardType, double balance) {
-        return database.AddAccount(firstName, lastName, ssn, cardType, balance);
+    int openAccount(String user, int cardNr, CardType cardType, double balance) {
+        return database.AddAccount(user, cardNr, cardType,balance);
     }
 
-    Customer getCustomer(int accountId) {
+   /* Customer getCustomer(int accountId) {
         return database.GetAccount(accountId);
     }
 
@@ -81,4 +81,6 @@ public class Bank implements Serializable {
         }
         return transactionFee;
     }
+
+    
 }

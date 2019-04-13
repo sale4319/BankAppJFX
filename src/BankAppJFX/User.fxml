@@ -45,11 +45,6 @@
             <Insets right="15.0" />
          </BorderPane.margin>
          <children>
-            <Label fx:id="controlLable" text="Control">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
             <Label fx:id="userLbl1" alignment="CENTER_RIGHT" style="-fx-font-family: Quicksand;" text="User" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="14.0" />
@@ -97,7 +92,7 @@
                   <Insets bottom="50.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="deleteAccButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Delete CreditCard" textFill="WHITE">
+            <Button fx:id="deleteAccButton" mnemonicParsing="false" onAction="#deleteCard" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Delete CreditCard" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>

@@ -11,23 +11,24 @@ package BankAppJFX;
  */
 public class TableModel {
 
-    String id, cardNr, cardType, balance;
+    String  cardNr, cardType, balance;
+    int id;
 
     public TableModel() {
     }
 
-    public TableModel(String id, String cardNr, String cardType, String balance) {
+    public TableModel(int id, String cardNr, String cardType, String balance) {
         this.id = id;
         this.cardNr = cardNr;
         this.cardType = cardType;
         this.balance = balance;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -7,6 +7,8 @@ package BankAppJFX;
 
 import java.sql.*;
 import java.sql.DriverManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -96,13 +98,13 @@ public class DbService {
         }
     }
 
-    public boolean temp(String cardNr) throws SQLException {
+    public boolean checkCardNr(int cardNr) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String query = "select * from accounts where cardNr = ?";
         try {
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, cardNr);
+            preparedStatement.setInt(1, cardNr);
 
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -117,5 +119,30 @@ public class DbService {
             resultSet.close();
         }
     }
+
     //CRUD
+    //Create account
+    int AddAccount(String user, int cardNr, CardType cardType, double balance) {
+        int accountId = -1;
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate("insert into accounts (userId, cardNr, cardType, balance) values ('" + user + "','" + cardNr + "','" + cardType + "','" + balance + "')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return accountId;
+
+    }
+
+    public void deleteAccount(int id) {
+        String deleteSql = "delete from accounts where id = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(deleteSql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
