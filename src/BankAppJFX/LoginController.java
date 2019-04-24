@@ -15,10 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -54,12 +51,6 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeDragable();
-        /* if (loginModel.isDbConnected()) {
-            isConnected.setText("Connected");
-        } else {
-            isConnected.setText("Not Connected");
-        }*/
-
     }
 
     public void makeDragable() {
@@ -82,17 +73,17 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    public void Login(ActionEvent evt) {
+    public void loginAction(ActionEvent evt) {
         
             try {
-                if (dbservice.isLogin(tf_username.getText(), pf_password.getText())) {
+                if (dbservice.checkLogin(tf_username.getText(), pf_password.getText())) {
                     //Hide stage when entering next stage
                     ((Node) evt.getSource()).getScene().getWindow().hide();
                     Stage primaryStage = new Stage();
                     FXMLLoader loader = new FXMLLoader();
                     Pane root = loader.load(getClass().getResource("User.fxml").openStream());
                     UserController userController = (UserController) loader.getController();
-                    userController.GetUser(tf_username.getText());
+                    userController.getUser(tf_username.getText());
                     Scene scene = new Scene(root);
                     //Make Borderless
                     scene.setFill(Color.TRANSPARENT);
@@ -107,12 +98,11 @@ public class LoginController implements Initializable {
                 isConnected.setText("Username or password is not correct.");
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-        
+            }    
     }
 
     @FXML
-    private void signUp(MouseEvent event) {
+    private void signUpAction(MouseEvent event) {
         try {
             ((Node) event.getSource()).getScene().getWindow().hide();
             Stage primaryStage = new Stage();
@@ -130,10 +120,10 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void LoginWithEnter(KeyEvent evt) {
+    private void loginWithEnter(KeyEvent evt) {
         if (evt.getCode() == KeyCode.ENTER) {
             try {
-                if (dbservice.isLogin(tf_username.getText(), pf_password.getText())) {
+                if (dbservice.checkLogin(tf_username.getText(), pf_password.getText())) {
 
                     //Hide stage
                     ((Node) evt.getSource()).getScene().getWindow().hide();
@@ -141,7 +131,7 @@ public class LoginController implements Initializable {
                     FXMLLoader loader = new FXMLLoader();
                     Pane root = loader.load(getClass().getResource("User.fxml").openStream());
                     UserController userController = (UserController) loader.getController();
-                    userController.GetUser(tf_username.getText());
+                    userController.getUser(tf_username.getText());
 
                     Scene scene = new Scene(root);
 

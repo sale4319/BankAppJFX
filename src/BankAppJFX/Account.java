@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package BankAppJFX;
 
 import java.io.Serializable;
@@ -22,19 +17,10 @@ public abstract class Account implements Serializable {
 
     public abstract CardType getCardType();
 
-    public double getBalance() {
-        return balance;
-    }
+    /**
+     * @return the balance
+     */
+ 
+   
 
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public int getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(int accountNumber) {
-        this.accountNumber = accountNumber;
-    }
 }

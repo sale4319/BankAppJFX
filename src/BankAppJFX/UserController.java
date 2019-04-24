@@ -11,17 +11,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.AccessibleAction;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -52,6 +48,7 @@ public class UserController implements Initializable {
     public DbService dbservice = new DbService();
     private double x = 0, y = 0;
     private Stage stage;
+
     String user;
     ObservableList<TableModel> oblist = FXCollections.observableArrayList();
     ObservableList<String> boxItems = FXCollections.observableArrayList("MasterCard", "Visa");
@@ -64,14 +61,6 @@ public class UserController implements Initializable {
     private Button closeButton;
     @FXML
     private Button minButton;
-    @FXML
-    private Button addCCButton;
-    @FXML
-    private Button deleteAccButton;
-    @FXML
-    private Button depositButton;
-    @FXML
-    private Button withdrawButton;
     @FXML
     private BorderPane UserMainPane;
     @FXML
@@ -97,6 +86,7 @@ public class UserController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         makeDragable();
         cb_cardtype.setValue("Card Type");
         cb_cardtype.setItems(boxItems);
@@ -117,22 +107,27 @@ public class UserController implements Initializable {
         }));
     }
 
-    public void GetUser(String user1) {
+    public void getUser(String user1) {
+        //Gets user from log in
         this.user = user1;
         userLbl.setText(user1);
         selectUserName(user1);
         populateTable(user1);
+
     }
 
     public void selectUserName(String s) {
         //Select and display name in label
-        String sql = "select firstName, lastName from users where username = ?";
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String readSQL = "SELECT firstName, lastName FROM users WHERE username = ?";
         try {
+
             connection = DbService.getConnection();
-            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt = connection.prepareStatement(readSQL);
             pstmt.setString(1, s);
-            ResultSet rs = pstmt.executeQuery();
-            //loops through result set without specific condition
+            rs = pstmt.executeQuery();
+            //Loops through result set without specific condition
             while (rs.next()) {
                 userLbl1.setText(rs.getString("firstName") + " " + rs.getString("lastName"));
             }
@@ -143,13 +138,16 @@ public class UserController implements Initializable {
     }
 
     public void populateTable(String s) {
+        //Importan to clear so it refreshes the table
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         oblist.clear();
         try {
-            String sql = "select * from accounts where userId = ?";
+            String readSQL = "SELECT * FROM accounts WHERE userId = ?";
             connection = DbService.getConnection();
-            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt = connection.prepareStatement(readSQL);
             pstmt.setString(1, s);
-            ResultSet rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 oblist.add(new TableModel(rs.getInt("id"), rs.getString("cardNr"),
@@ -166,7 +164,7 @@ public class UserController implements Initializable {
     }
 
     @FXML
-    public void SignOut(ActionEvent event) {
+    public void signOutAction(ActionEvent event) {
         try {
             ((Node) event.getSource()).getScene().getWindow().hide();
             Stage primaryStage = new Stage();
@@ -185,12 +183,12 @@ public class UserController implements Initializable {
     }
 
     @FXML
-    private void min(ActionEvent event) {
+    private void minAction(ActionEvent event) {
         ((Stage) minButton.getScene().getWindow()).setIconified(true);
     }
 
     @FXML
-    private void max(ActionEvent event) {
+    private void maxAction(ActionEvent event) {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         stage.setFullScreen(true);
@@ -199,7 +197,7 @@ public class UserController implements Initializable {
     }
 
     @FXML
-    public void close(ActionEvent event) {
+    public void closeAction(ActionEvent event) {
         ((Stage) closeButton.getScene().getWindow()).close();
     }
 
@@ -220,15 +218,26 @@ public class UserController implements Initializable {
                     warnings.append("Initial deposit must be a number.\n");
                 }
             }
+
             if (tf_cardnumber.getText().isEmpty()) {
                 warnings.append("Card number field must not be empty.\n");
+
             } else {
-                cardNr = Integer.parseInt(tf_cardnumber.getText());
+
+                try {
+                    cardNr = Integer.parseInt(tf_cardnumber.getText());
+                } catch (NumberFormatException ex) {
+                    warnings.append("Card number must be a number and can not be longer than 9 digits.\n");
+                }
             }
 
             if (dbservice.checkCardNr(Integer.parseInt(tf_cardnumber.getText()))) {
                 warnings.append("Credit card already connected.\n");
 
+            }
+            if (warnings.length() > 0) {
+                Alert alert = new Alert(AlertType.WARNING, warnings.toString(), ButtonType.OK);
+                alert.showAndWait();
             } else {
                 CardType cardType = CardType.Undefined;
                 if (cb_cardtype.getValue().equals("MasterCard")) {
@@ -248,18 +257,19 @@ public class UserController implements Initializable {
                 if (cb_cardtype.getValue().equals("Card Type")) {
                     warnings.append("You need to select card type.\n");
                 }
-                if (warnings.length() > 0) {
-                    Alert alert = new Alert(AlertType.WARNING, warnings.toString(), ButtonType.OK);
-                    alert.showAndWait();
-                }
+
                 if (cardType != CardType.Undefined) {
 
-                    int accountId = bank.openAccount(user, cardNr, cardType, amount);
+                    bank.openAccount(user, cardNr, cardType, amount);
+
                     populateTable(user);
                     tf_initialDeposit.clear();
                     tf_cardnumber.clear();
                     cb_cardtype.setValue("Card Type");
                     Alert alert = new Alert(AlertType.CONFIRMATION, "Card registered successfully", ButtonType.OK);
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(AlertType.WARNING, warnings.toString(), ButtonType.OK);
                     alert.showAndWait();
                 }
             }
@@ -267,18 +277,110 @@ public class UserController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (NumberFormatException ex) {
-            Alert alert = new Alert(AlertType.WARNING, "Card number  must be a number.", ButtonType.OK);
+            Alert alert = new Alert(AlertType.WARNING, warnings.toString(), ButtonType.OK);
             alert.showAndWait();
         }
     }
 
     @FXML
-    private void deleteCard() {
-        //Selects id in clicked row
-        int selectedRow = table.getSelectionModel().getSelectedItem().getId();
-        dbservice.deleteAccount(selectedRow);
-        table.getItems().removeAll(table.getSelectionModel().getSelectedItem());
+    private void deleteCardAction() throws Exception {
+        try {
+            dbservice.deleteCard(rowSelected());
+            table.getItems().removeAll(table.getSelectionModel().getSelectedItem());
+        } catch (Exception e) {
+            Alert alert = new Alert(AlertType.WARNING, "Please select the card you want to delete.", ButtonType.OK);
+            alert.showAndWait();
+        }
+    }
 
+    @FXML
+    private void depositAction(ActionEvent event) throws Exception {
+        try {
+
+            StringBuilder warnings = new StringBuilder();
+            double amount = 0;
+            connection = DbService.getConnection();
+            //Take input
+            if (tf_deposit.getText().isEmpty()) {
+                warnings.append("Deposit must be entered.");
+            } else {
+
+                try {
+                    //Check input
+                    amount = bank.round(Double.parseDouble(tf_deposit.getText()), 2);
+                } catch (NumberFormatException ex) {
+                    warnings.append("Deposit must be a number.\n");
+                }
+
+            }
+            if (warnings.length() > 0) {
+                Alert alert = new Alert(AlertType.WARNING, warnings.toString(), ButtonType.OK);
+                alert.showAndWait();
+            } else {
+
+                //Make the deposit
+                try {
+
+                    dbservice.getDeposit(rowSelected(), amount);
+                    populateTable(user);
+                    tf_deposit.clear();
+                    Alert alert = new Alert(AlertType.CONFIRMATION, "You successfully deposited $" + amount, ButtonType.OK);
+                    alert.showAndWait();
+                } catch (InvalidAmountException ex) {
+                    System.out.println("How did we get here");
+                }
+            }
+
+        } catch (Exception e) {
+            Alert alert = new Alert(AlertType.WARNING, "Please select the card to which you want to make the deposit.", ButtonType.OK);
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void withdrawalAction(ActionEvent event) throws Exception {
+        try {
+
+            StringBuilder warnings = new StringBuilder();
+            double amount = 0;
+            connection = DbService.getConnection();
+            //Take input
+            if (tf_withdraw.getText().isEmpty()) {
+                warnings.append("Withdrawal must be entered.");
+            } else {
+                try {
+                    //Check input
+                    amount = bank.round(Double.parseDouble(tf_withdraw.getText()), 2);
+                } catch (NumberFormatException ex) {
+                    warnings.append("Withdrawal must be a number.\n");
+                }
+            }
+            if (warnings.length() > 0) {
+                Alert alert = new Alert(AlertType.WARNING, warnings.toString(), ButtonType.OK);
+                alert.showAndWait();
+            } else {
+                //Make the withdrawal
+                try {
+                    dbservice.getWithdrawal(rowSelected(), amount);
+                    populateTable(user);
+                    tf_withdraw.clear();
+                    Alert alert = new Alert(AlertType.CONFIRMATION, "You successfully withdrew $" + amount, ButtonType.OK);
+                    alert.showAndWait();
+                } catch (InvalidAmountException ex) {
+                    System.out.println("How did we get here");
+                }
+            }
+        } catch (Exception e) {
+            Alert alert = new Alert(AlertType.WARNING, "Please select the card from which you want to make the withdrawal.", ButtonType.OK);
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    public int rowSelected() throws Exception {
+        //Selectes clicked row in table
+        int selectedRow = table.getSelectionModel().getSelectedItem().getId();
+        return selectedRow;
     }
 
 }

@@ -9,16 +9,10 @@ package BankAppJFX;
  *
  * @author Aco PC
  */
-public class Visa extends Account {
+public class InvalidAmountException extends Exception {
 
-    public Visa(int AccountId, double initialDeposit) {
-        super(AccountId);
-       
-    }
-
-    @Override
-    public CardType getCardType() {
-        return CardType.Visa;
+    public InvalidAmountException() {
+        super("Invalid mount for transaction.");
     }
 
 }

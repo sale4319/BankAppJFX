@@ -19,7 +19,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -80,7 +79,7 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    public void SignOut(MouseEvent event) {
+    public void signOutAction(MouseEvent event) {
         try {
             ((Node) event.getSource()).getScene().getWindow().hide();
             Stage primaryStage = new Stage();
@@ -98,7 +97,7 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    private void signUp(ActionEvent event) throws IOException {
+    private void signUpAction(ActionEvent event) throws IOException {
         signUpReusable();
 
     }
@@ -117,6 +116,7 @@ public class RegisterController implements Initializable {
         Connection connection = DbService.getConnection();
 
         try {
+            //Takes and checks input
             if (tf_firstName.getText().isEmpty()) {
                 warnings.append("First name must not be empty.\n");
             } else {
@@ -144,20 +144,22 @@ public class RegisterController implements Initializable {
                 password = pf_password.getText();
             }
             if (warnings.length() > 0) {
+                //Displays warnings if something is wrong
                 Alert alert = new Alert(Alert.AlertType.WARNING, warnings.toString(), ButtonType.OK);
                 alert.showAndWait();
             } else {
-                if (dbservice.isTaken(tf_username.getText(), tf_email.getText())) {
+                //Checks if username and email are already taken
+                if (dbservice.chekcIfTaken(tf_username.getText(), tf_email.getText())) {
                     Alert alert = new Alert(Alert.AlertType.WARNING, "Username or email already taken.", ButtonType.OK);
                     alert.showAndWait();
-                    
+
                 } else {
+                    //Registers new user
                     Statement statement = connection.createStatement();
-
-                    int status = statement.executeUpdate("insert into users (firstName, lastName, username, email, password)"
-                            + " values ('" + firstName + "','" + lastName + "','" + username + "','" + email + "','" + password + "')");
+                    int status = statement.executeUpdate("INSERT INTO users (firstName, lastName, username, email, password)"
+                            + " VALUES ('" + firstName + "','" + lastName + "','" + username + "','" + email + "','" + password + "')");
                     if (status > 0) {
-
+                        //Clears text fields after input
                         tf_firstName.clear();
                         tf_lastName.clear();
                         tf_username.clear();
@@ -165,7 +167,7 @@ public class RegisterController implements Initializable {
                         pf_password.clear();
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "User registered successfully", ButtonType.OK);
                         alert.showAndWait();
-                        
+
                     }
                 }
             }

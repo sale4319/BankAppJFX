@@ -6,9 +6,9 @@ package BankAppJFX;
  */
 public class MasterCard extends Account {
 
-    public MasterCard(int accountId, double initialDeposit) {
-        super(accountId);
-        this.setBalance(initialDeposit);
+    public MasterCard(int AccountId, double initialDeposit) {
+        super(AccountId);
+        
     }
 
     @Override

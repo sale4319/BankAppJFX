@@ -9,16 +9,10 @@ package BankAppJFX;
  *
  * @author Aco PC
  */
-public class Visa extends Account {
+public class InsufficientFundsException extends Exception {
 
-    public Visa(int AccountId, double initialDeposit) {
-        super(AccountId);
-       
-    }
-
-    @Override
-    public CardType getCardType() {
-        return CardType.Visa;
+    public InsufficientFundsException() {
+        super("You have insufficient funds to complete the transaction.");
     }
 
 }

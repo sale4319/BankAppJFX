@@ -75,12 +75,12 @@
          <children>
             <VBox alignment="CENTER" prefHeight="66.0" prefWidth="242.0" spacing="10.0">
                <children>
-                  <Button alignment="CENTER" maxHeight="25.0" maxWidth="140.0" minHeight="25.0" minWidth="80.0" mnemonicParsing="false" onAction="#signUp" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #E7A2D7; -fx-background-radius: 100PX; -fx-font-family: Quicksand;" text="Sign Up" textFill="WHITE">
+                  <Button alignment="CENTER" maxHeight="25.0" maxWidth="140.0" minHeight="25.0" minWidth="80.0" mnemonicParsing="false" onAction="#signUpAction" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: #E7A2D7; -fx-background-radius: 100PX; -fx-font-family: Quicksand;" text="Sign Up" textFill="WHITE">
                      <font>
                         <Font name="Arial Bold" size="11.0" />
                      </font>
                   </Button>
-                  <Text onMouseClicked="#SignOut" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: white;" text="Return to Login" wrappingWidth="95.13671875" />
+                  <Text onMouseClicked="#signOutAction" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: white;" text="Return to Login" wrappingWidth="95.13671875" />
                </children>
                <HBox.margin>
                   <Insets bottom="10.0" />

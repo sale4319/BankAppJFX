@@ -7,8 +7,6 @@ package BankAppJFX;
 
 import java.sql.*;
 import java.sql.DriverManager;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -52,17 +50,33 @@ public class DbService {
         return connection;
     }
 
-    public boolean isLogin(String user, String pass) throws SQLException {
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        String query = "select * from users where username = ? and password = ?";
+    //CRUD
+    //Create account
+    int addCreditCard(String user, int cardNr, CardType cardType, double balance) {
+        int id = -1;
+        Statement statement;
         try {
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, user);
-            preparedStatement.setString(2, pass);
+            statement = connection.createStatement();
+            statement.executeUpdate("INSERT INTO accounts (userId, cardNr, cardType, balance) VALUES ('" + user + "','" + cardNr + "','" + cardType + "','" + balance + "')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
 
-            resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
+    }
+
+    //Read 
+    public boolean checkLogin(String user, String pass) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String readSQL = "SELECT * FROM users WHERE username = ? AND password = ?";
+        try {
+            pstmt = connection.prepareStatement(readSQL);
+            pstmt.setString(1, user);
+            pstmt.setString(2, pass);
+
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
                 return true;
             } else {
                 return false;
@@ -70,22 +84,22 @@ public class DbService {
         } catch (SQLException e) {
             return false;
         } finally {
-            preparedStatement.close();
-            resultSet.close();
+            pstmt.close();
+            rs.close();
         }
     }
 
-    public boolean isTaken(String user, String email) throws SQLException {
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        String query = "select * from users where username = ? or email = ?";
+    public boolean chekcIfTaken(String user, String email) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String readSQL = "SELECT * FROM users WHERE username = ? OR email = ?";
         try {
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, user);
-            preparedStatement.setString(2, email);
+            pstmt = connection.prepareStatement(readSQL);
+            pstmt.setString(1, user);
+            pstmt.setString(2, email);
 
-            resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
                 return true;
             } else {
                 return false;
@@ -93,21 +107,21 @@ public class DbService {
         } catch (SQLException e) {
             return false;
         } finally {
-            preparedStatement.close();
-            resultSet.close();
+            pstmt.close();
+            rs.close();
         }
     }
 
     public boolean checkCardNr(int cardNr) throws SQLException {
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        String query = "select * from accounts where cardNr = ?";
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String readSQL = "SELECT * FROM accounts WHERE cardNr = ?";
         try {
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, cardNr);
+            pstmt = connection.prepareStatement(readSQL);
+            pstmt.setInt(1, cardNr);
 
-            resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
                 return true;
             } else {
                 return false;
@@ -115,34 +129,89 @@ public class DbService {
         } catch (SQLException e) {
             return false;
         } finally {
-            preparedStatement.close();
-            resultSet.close();
+            pstmt.close();
+            rs.close();
         }
     }
 
-    //CRUD
-    //Create account
-    int AddAccount(String user, int cardNr, CardType cardType, double balance) {
-        int accountId = -1;
-        Statement statement;
+    public void getDeposit(int id, double amount) throws Exception {//
+        //Here we fetch deposit amount and add it to current balance and send to updateBalance and
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String readSQL = "SELECT balance FROM accounts WHERE id = ?";
         try {
-            statement = connection.createStatement();
-            statement.executeUpdate("insert into accounts (userId, cardNr, cardType, balance) values ('" + user + "','" + cardNr + "','" + cardType + "','" + balance + "')");
+            pstmt = connection.prepareStatement(readSQL);
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                double balance = rs.getDouble("balance");
+                double newBalance = balance + amount;
+
+                updateBalance(id, newBalance);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            pstmt.close();
+            rs.close();
+        }
+    }
+
+    public void getWithdrawal(int id, double amount) throws Exception {//
+        //Here we fetch withdrawal amount and add it to current balance and send to updateBalance and
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String readSQL = "SELECT balance FROM accounts WHERE id = ?";
+        try {
+            pstmt = connection.prepareStatement(readSQL);
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                double balance = rs.getDouble("balance");
+                double newBalance = balance - amount;
+
+                updateBalance(id, newBalance);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            pstmt.close();
+            rs.close();
+        }
+    }
+
+    //Update
+    boolean updateBalance(int id, double balance) {
+        //Update new balance to DB
+        PreparedStatement pstmt = null;
+        boolean success = false;
+        try {
+            String updateSQL = "UPDATE accounts SET balance = ? WHERE id = ?";
+            pstmt = connection.prepareStatement(updateSQL);
+            pstmt.setDouble(1, balance);
+            pstmt.setInt(2, id);
+            pstmt.executeUpdate();
+            success = true;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return success;
+    }
+
+    //Delete
+    public void deleteCard(int id) {
+        //Delte selected credit card
+        PreparedStatement pstmt = null;
+        String deleteSQL = "DELETE FROM accounts WHERE id = ?";
+        try {
+            pstmt = connection.prepareStatement(deleteSQL);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return accountId;
-
     }
 
-    public void deleteAccount(int id) {
-        String deleteSql = "delete from accounts where id = ?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(deleteSql);
-            ps.setInt(1, id);
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }

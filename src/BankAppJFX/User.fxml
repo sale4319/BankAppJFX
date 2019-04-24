@@ -22,7 +22,7 @@
                   <Font name="Arial Bold" size="16.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#SignOut" prefHeight="27.0" prefWidth="77.0" style="-fx-background-color: #E7A2D7; -fx-background-radius: 100PX; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Sign Out" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#signOutAction" prefHeight="27.0" prefWidth="77.0" style="-fx-background-color: #E7A2D7; -fx-background-radius: 100PX; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Sign Out" textAlignment="JUSTIFY" textFill="WHITE">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -50,9 +50,9 @@
                   <Font name="Arial Bold" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="minButton" maxHeight="9.0" maxWidth="9.0" minHeight="9.0" minWidth="9.0" mnemonicParsing="false" onAction="#min" prefHeight="9.0" prefWidth="9.0" style="-fx-background-color: white; -fx-background-radius: 100PX;" />
-            <Button maxHeight="9.0" maxWidth="9.0" minHeight="9.0" minWidth="9.0" mnemonicParsing="false" onAction="#max" prefHeight="9.0" prefWidth="9.0" style="-fx-background-color: #D40BAF; -fx-background-radius: 100PX;" />
-            <Button fx:id="closeButton" maxHeight="9.0" maxWidth="9.0" minHeight="9.0" minWidth="9.0" mnemonicParsing="false" onAction="#close" prefHeight="9.0" prefWidth="9.0" style="-fx-background-color: #302444; -fx-background-radius: 100PX;" />
+            <Button fx:id="minButton" maxHeight="9.0" maxWidth="9.0" minHeight="9.0" minWidth="9.0" mnemonicParsing="false" onAction="#minAction" prefHeight="9.0" prefWidth="9.0" style="-fx-background-color: white; -fx-background-radius: 100PX;" />
+            <Button maxHeight="9.0" maxWidth="9.0" minHeight="9.0" minWidth="9.0" mnemonicParsing="false" onAction="#maxAction" prefHeight="9.0" prefWidth="9.0" style="-fx-background-color: #D40BAF; -fx-background-radius: 100PX;" />
+            <Button fx:id="closeButton" maxHeight="9.0" maxWidth="9.0" minHeight="9.0" minWidth="9.0" mnemonicParsing="false" onAction="#closeAction" prefHeight="9.0" prefWidth="9.0" style="-fx-background-color: #302444; -fx-background-radius: 100PX;" />
          </children>
       </HBox>
    </top>
@@ -62,19 +62,19 @@
             <TextField fx:id="tf_initialDeposit" prefHeight="13.0" prefWidth="149.0" promptText="Enter Initial Deposit" style="-fx-background-color: white; -fx-border-width: 0 0 2px 0; -fx-border-color: white;" />
             <TextField fx:id="tf_cardnumber" promptText="Enter Card Number" style="-fx-background-color: white; -fx-border-width: 0 0 2px 0; -fx-border-color: white;" />
             <ComboBox fx:id="cb_cardtype" prefWidth="150.0" promptText="Card Type" style="-fx-background-color: white; -fx-border-color: white;" />
-            <Button fx:id="addCCButton" mnemonicParsing="false" onAction="#addCCAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Add CreitCard" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#addCCAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Add CreitCard" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>
             </Button>
-            <TextField fx:id="tf_deposit" promptText="Enter Deposit Amount" style="-fx-background-color: white; -fx-border-width: 0 0 2px 0; -fx-border-color: white; -fx-text-fill: white;" />
-            <Button fx:id="depositButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Deposit Money" textFill="WHITE">
+            <TextField fx:id="tf_deposit" promptText="Enter Deposit Amount" style="-fx-background-color: white; -fx-border-width: 0 0 2px 0; -fx-border-color: white;" />
+            <Button mnemonicParsing="false" onAction="#depositAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Deposit Money" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>
             </Button>
             <TextField fx:id="tf_withdraw" promptText="Enter Withdrawal Amount" style="-fx-background-color: white; -fx-border-color: white; -fx-border-width: 0 0 2px 0;" />
-            <Button fx:id="withdrawButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Withdraw Money" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#withdrawalAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Withdraw Money" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>
@@ -92,7 +92,7 @@
                   <Insets bottom="50.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="deleteAccButton" mnemonicParsing="false" onAction="#deleteCard" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Delete CreditCard" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#deleteCardAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Delete CreditCard" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>
@@ -110,7 +110,7 @@
       <Pane prefHeight="395.0" prefWidth="22.0" BorderPane.alignment="CENTER" />
    </right>
    <center>
-      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+      <TableView fx:id="table" onMouseClicked="#rowSelected" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="col_id" editable="false" prefWidth="75.0" text="ID" />
             <TableColumn fx:id="col_cardNr" editable="false" prefWidth="247.0" text="Card Number" />
