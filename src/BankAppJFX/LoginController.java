@@ -97,7 +97,7 @@ public class LoginController implements Initializable {
                     isConnected.setText("Incorrect username or password.");
                 }
             } catch (SQLException e) {
-                isConnected.setText("Incorrect username or password..");
+                isConnected.setText("Incorrect username or password.");
             } catch (IOException e) {
                 e.printStackTrace();
             }    
@@ -144,10 +144,10 @@ public class LoginController implements Initializable {
                     primaryStage.show();
 
                 } else {
-                    isConnected.setText("Username or password is not correct.");
+                    isConnected.setText("Incorrect username or password.");
                 }
             } catch (SQLException e) {
-                isConnected.setText("Username or password is not correct.");
+                isConnected.setText("Incorrect username or password.");
             } catch (IOException e) {
                 e.printStackTrace();
             }
