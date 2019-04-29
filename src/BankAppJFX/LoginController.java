@@ -5,6 +5,8 @@
  */
 package BankAppJFX;
 
+
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -92,10 +94,10 @@ public class LoginController implements Initializable {
                     primaryStage.show();
 
                 } else {
-                    isConnected.setText("Username or password is not correct.");
+                    isConnected.setText("Incorrect username or password.");
                 }
             } catch (SQLException e) {
-                isConnected.setText("Username or password is not correct.");
+                isConnected.setText("Incorrect username or password..");
             } catch (IOException e) {
                 e.printStackTrace();
             }    

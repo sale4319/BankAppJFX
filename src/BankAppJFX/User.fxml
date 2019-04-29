@@ -7,95 +7,183 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.ImageInput?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="UserMainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="787.0" style="-fx-background-image: url('file:///C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/img/bkgrnd.png');" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BankAppJFX.UserController">
+<BorderPane fx:id="UserMainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="787.0" style="-fx-background-radius: 5PX;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BankAppJFX.UserController">
    <bottom>
-      <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="683.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="775.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="userLbl" alignment="CENTER_RIGHT" style="-fx-font-family: Quicksand;" text="User" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#deleteCardAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #1D8DE3; -fx-font-family: Quicksand;" text="Delete CreditCard" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="10.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <HBox.margin>
+                  <Insets right="430.0" />
+               </HBox.margin>
+            </Button>
+            <Label fx:id="userLbl" alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="144.0" style="-fx-font-family: Quicksand; -fx-text-fill: #1D8DE3;" text="User" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="16.0" />
                </font>
             </Label>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#signOutAction" prefHeight="27.0" prefWidth="77.0" style="-fx-background-color: #E7A2D7; -fx-background-radius: 100PX; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Sign Out" textAlignment="JUSTIFY" textFill="WHITE">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#signOutAction" prefHeight="27.0" prefWidth="77.0" style="-fx-background-color: #1D8DE3; -fx-background-radius: 100PX; -fx-font-family: Quicksand; -fx-font-weight: bold;" text="Sign Out" textAlignment="JUSTIFY" textFill="WHITE">
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" right="17.0" top="10.0" />
                </HBox.margin>
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
          </children>
          <BorderPane.margin>
-            <Insets right="17.0" />
+            <Insets />
          </BorderPane.margin>
       </HBox>
    </bottom>
    <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="706.0" spacing="5.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="787.0" spacing="5.0" style="-fx-background-color: #1D8DE3; -fx-background-radius: 5PX;" BorderPane.alignment="CENTER">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <BorderPane.margin>
-            <Insets right="15.0" />
+            <Insets />
          </BorderPane.margin>
          <children>
-            <Label fx:id="userLbl1" alignment="CENTER_RIGHT" style="-fx-font-family: Quicksand;" text="User" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="14.0" />
-               </font>
-            </Label>
-            <Button fx:id="minButton" maxHeight="9.0" maxWidth="9.0" minHeight="9.0" minWidth="9.0" mnemonicParsing="false" onAction="#minAction" prefHeight="9.0" prefWidth="9.0" style="-fx-background-color: white; -fx-background-radius: 100PX;" />
-            <Button maxHeight="9.0" maxWidth="9.0" minHeight="9.0" minWidth="9.0" mnemonicParsing="false" onAction="#maxAction" prefHeight="9.0" prefWidth="9.0" style="-fx-background-color: #D40BAF; -fx-background-radius: 100PX;" />
-            <Button fx:id="closeButton" maxHeight="9.0" maxWidth="9.0" minHeight="9.0" minWidth="9.0" mnemonicParsing="false" onAction="#closeAction" prefHeight="9.0" prefWidth="9.0" style="-fx-background-color: #302444; -fx-background-radius: 100PX;" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="805.0">
+               <children>
+                  <Label maxHeight="24.0" maxWidth="24.0" minHeight="24.0" minWidth="24.0" prefHeight="24.0" prefWidth="24.0">
+                     <HBox.margin>
+                        <Insets right="380.0" />
+                     </HBox.margin>
+                     <effect>
+                        <ImageInput>
+                           <source>
+                              <Image url="file:/C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/Images/Money%20Bag_24px.png" />
+                           </source>
+                        </ImageInput>
+                     </effect>
+                  </Label>
+                  <Label fx:id="userLbl1" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="268.0" style="-fx-font-family: Quicksand;" text="User" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button fx:id="minButton" maxHeight="16.0" maxWidth="16.0" minHeight="16.0" minWidth="16.0" mnemonicParsing="false" onAction="#minAction" prefHeight="16.0" prefWidth="16.0" style="-fx-background-color: white; -fx-background-radius: 100PX;">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                     <effect>
+                        <ImageInput>
+                           <source>
+                              <Image url="file:/C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/Images/Minus_16px.png" />
+                           </source>
+                        </ImageInput>
+                     </effect>
+                  </Button>
+                  <Button maxHeight="16.0" maxWidth="16.0" minHeight="16.0" minWidth="16.0" mnemonicParsing="false" onAction="#maxAction" prefHeight="16.0" prefWidth="16.0" style="-fx-background-color: #D40BAF; -fx-background-radius: 100PX;">
+                     <effect>
+                        <ImageInput>
+                           <source>
+                              <Image url="file:/C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/Images/Plus_16px.png" />
+                           </source>
+                        </ImageInput>
+                     </effect>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="closeButton" maxHeight="16.0" maxWidth="16.0" minHeight="16.0" minWidth="16.0" mnemonicParsing="false" onAction="#closeAction" prefHeight="16.0" prefWidth="16.0" style="-fx-background-radius: 100PX;">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="17.0" top="5.0" />
+                     </HBox.margin>
+                     <effect>
+                        <ImageInput>
+                           <source>
+                              <Image url="file:/C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/Images/Cancel_16px.png" />
+                           </source>
+                        </ImageInput>
+                     </effect>
+                  </Button>
+               </children>
+            </HBox>
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </HBox>
    </top>
    <left>
       <VBox prefHeight="370.0" prefWidth="159.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="tf_initialDeposit" prefHeight="13.0" prefWidth="149.0" promptText="Enter Initial Deposit" style="-fx-background-color: white; -fx-border-width: 0 0 2px 0; -fx-border-color: white;" />
+            <TextField fx:id="tf_initialDeposit" prefHeight="13.0" prefWidth="149.0" promptText="Enter Initial Deposit" style="-fx-background-color: white; -fx-border-width: 0 0 2px 0; -fx-border-color: white;">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></TextField>
             <TextField fx:id="tf_cardnumber" promptText="Enter Card Number" style="-fx-background-color: white; -fx-border-width: 0 0 2px 0; -fx-border-color: white;" />
-            <ComboBox fx:id="cb_cardtype" prefWidth="150.0" promptText="Card Type" style="-fx-background-color: white; -fx-border-color: white;" />
-            <Button mnemonicParsing="false" onAction="#addCCAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Add CreitCard" textFill="WHITE">
+            <ComboBox fx:id="cb_cardtype" prefWidth="150.0" promptText="Card Type" style="-fx-background-color: white; -fx-border-color: #1D8DE3;" />
+            <Button mnemonicParsing="false" onAction="#addCCAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #1D8DE3; -fx-font-family: Quicksand;" text="Add CreitCard" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
-            <TextField fx:id="tf_deposit" promptText="Enter Deposit Amount" style="-fx-background-color: white; -fx-border-width: 0 0 2px 0; -fx-border-color: white;" />
-            <Button mnemonicParsing="false" onAction="#depositAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Deposit Money" textFill="WHITE">
+            <TextField fx:id="tf_deposit" promptText="Enter Deposit Amount" style="-fx-background-color: white; -fx-border-width: 0 0 2px 0; -fx-border-color: white;">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></TextField>
+            <Button mnemonicParsing="false" onAction="#depositAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #1D8DE3; -fx-font-family: Quicksand;" text="Deposit Money" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
-            <TextField fx:id="tf_withdraw" promptText="Enter Withdrawal Amount" style="-fx-background-color: white; -fx-border-color: white; -fx-border-width: 0 0 2px 0;" />
-            <Button mnemonicParsing="false" onAction="#withdrawalAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Withdraw Money" textFill="WHITE">
+            <TextField fx:id="tf_withdraw" promptText="Enter Withdrawal Amount" style="-fx-background-color: white; -fx-border-color: white; -fx-border-width: 0 0 2px 0;">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></TextField>
+            <Button mnemonicParsing="false" onAction="#withdrawalAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #1D8DE3; -fx-font-family: Quicksand;" text="Withdraw Money" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
             <TextField promptText="Enter Transfer Amount" style="-fx-background-color: white; -fx-border-color: white; -fx-border-width: 0 0 2px 0;">
                <VBox.margin>
-                  <Insets />
+                  <Insets top="10.0" />
                </VBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Transfer Money" textFill="WHITE">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #1D8DE3; -fx-font-family: Quicksand;" text="Transfer Money" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="50.0" />
+                  <Insets />
                </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#deleteCardAction" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #E7A2D7; -fx-font-family: Quicksand;" text="Delete CreditCard" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="10.0" />
-               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Button>
          </children>
          <padding>
@@ -107,10 +195,10 @@
       </VBox>
    </left>
    <right>
-      <Pane prefHeight="395.0" prefWidth="22.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="382.0" prefWidth="22.0" BorderPane.alignment="CENTER" />
    </right>
    <center>
-      <TableView fx:id="table" onMouseClicked="#rowSelected" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+      <TableView fx:id="table" onMouseClicked="#rowSelected" prefHeight="200.0" prefWidth="596.0" style="-fx-background-color: transparent; -fx-background-radius: 5PX;" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="col_id" editable="false" prefWidth="75.0" text="ID" />
             <TableColumn fx:id="col_cardNr" editable="false" prefWidth="247.0" text="Card Number" />
@@ -120,6 +208,9 @@
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
+         <effect>
+            <DropShadow />
+         </effect>
       </TableView>
    </center>
 </BorderPane>

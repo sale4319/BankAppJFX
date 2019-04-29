@@ -1,0 +1,50 @@
+Recent features FINISHED:
+29.04.2019
+- Frontend completely new look
+- Removed unneccessary code and files from the project
+24.04.2019
+- Refactored the whole project to have better overview
+- Reconstructed database class in Java
+- Made mathematical functions infrastructure
+- Deposit works
+- Withdraw works
+- Balance updated
+23.04.2019
+- Resolved crashing when delte or deposit button is clicked without selecting a row
+21.04.2019
+- Deposit(Takes deposit correctly but replaces current balance instead of updating it)
+- Balance(Need to figure out how to read current Balance from DB and send it to bank)
+15.04.2019:
+- Made db for account functions
+- debugged AddCC method
+13.04.2019:
+- CardNr must be a number
+- Made rowSelected functionality
+- Reload table 
+- DelteCC (Finished)
+- AddCC (Finished)
+- Setup combobox
+- Connected combobox choices to cardType enum
+- Data insert for CardType into db
+07.04.2019:
+- Now able to enter initial deposit
+- Moved query to DbService
+- Introduced pop up alterts instead of lables
+- Started add cc functionality
+- userId is set, able to enter cardNr for now
+- Synchronize account db with user db
+02.04.2019: 
+- Delted everything related to AddCreditCard, it will be handled in User
+- Updated user filed for adding credit card and other functions
+- Moved LoginModel to DbService
+Before:
+-table displays only info connected to username
+-Add lable to show first and last name 
+-Populate table
+-Made borderless and draggable
+-No double users
+-No null input users
+-Login and register on ENTER
+-Clear fields after signup
+
+

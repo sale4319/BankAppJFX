@@ -5,12 +5,13 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 
+
 public class Bank implements Serializable {
 
     Account account;
     private DbService dbservice = new DbService();
     
-    int openAccount(String user, int cardNr, CardType cardType, double balance) {
+    public int openAccount(String user, int cardNr, CardType cardType, double balance) {
         return dbservice.addCreditCard(user, cardNr, cardType, balance);
     }
 
