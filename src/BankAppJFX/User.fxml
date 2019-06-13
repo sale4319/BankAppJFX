@@ -71,7 +71,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/Images/Money%20Bag_24px.png" />
+                              <Image url="file:/D:/NetBeans/BankAppJFX/src/Images/Money%20Bag_24px.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -91,7 +91,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/Images/Minus_16px.png" />
+                              <Image url="file:/D:/NetBeans/BankAppJFX/src/Images/Minus_16px.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -100,7 +100,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/Images/Plus_16px.png" />
+                              <Image url="file:/D:/NetBeans/BankAppJFX/src/Images/Plus_16px.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -115,7 +115,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/Images/Cancel_16px.png" />
+                              <Image url="file:/D:/NetBeans/BankAppJFX/src/Images/Cancel_16px.png" />
                            </source>
                         </ImageInput>
                      </effect>

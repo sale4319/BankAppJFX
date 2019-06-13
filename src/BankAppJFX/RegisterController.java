@@ -5,8 +5,6 @@
  */
 package BankAppJFX;
 
-import BankAppJFX.DbService;
-import BankAppJFX.DbService;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;

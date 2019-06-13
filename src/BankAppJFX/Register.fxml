@@ -87,7 +87,7 @@
                         <DropShadow />
                      </effect>
                   </Button>
-                  <Text onMouseClicked="#signOutAction" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #1D8DE3;" text="Return to Login" wrappingWidth="95.13671875" />
+                  <Text onMouseClicked="#signOutAction" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #1D8DE3; -fx-font-size: 12px;" text="Return to Login" wrappingWidth="94.13671875" />
                </children>
                <HBox.margin>
                   <Insets bottom="10.0" />

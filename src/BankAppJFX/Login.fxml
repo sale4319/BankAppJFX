@@ -22,15 +22,6 @@
             <DropShadow />
          </effect>
          <children>
-              <Button fx:id="closeButton" cancelButton="true" layoutX="14.0" layoutY="14.0" maxHeight="25.0" maxWidth="23.0" minHeight="10.0" minWidth="10.0" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="16.0" prefWidth="17.0" style="-fx-background-color: #302444; -fx-background-radius: 100PX;">
-               <effect>
-                  <ImageInput>
-                     <source>
-                        <Image url="file:/C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/Images/Shutdown_16px.png" />
-                     </source>
-                  </ImageInput>
-               </effect>
-            </Button>
               <Label fx:id="isConnected" layoutX="11.0" layoutY="192.0" minHeight="16" minWidth="69" prefHeight="25.0" prefWidth="257.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold;" textFill="#f22004">
                   <font>
                       <Font size="16.0" />
@@ -38,7 +29,7 @@
               </Label>
             <ImageView fitHeight="96.0" fitWidth="96.0" layoutX="91.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/Images/moneyBag.png" />
+                  <Image url="file:/D:/NetBeans/BankAppJFX/src/Images/moneyBag.png" />
                </image>
             </ImageView>
             <Label layoutX="83.0" layoutY="14.0" prefHeight="49.0" prefWidth="113.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-text-fill: white;" text="MONEY BAG">
@@ -46,6 +37,15 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <Button fx:id="closeButton" layoutX="14.0" layoutY="14.0" maxHeight="16.0" maxWidth="16.0" minHeight="16.0" minWidth="16.0" mnemonicParsing="false" onAction="#closeButtonAction" prefHeight="16.0" prefWidth="16.0" style="-fx-background-radius: 100PX;">
+               <effect>
+                  <ImageInput>
+                     <source>
+                        <Image url="file:/D:/NetBeans/BankAppJFX/src/Images/Shutdown_16px.png" />
+                     </source>
+                  </ImageInput>
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
       <VBox alignment="CENTER" layoutX="281.0" prefHeight="217.0" prefWidth="241.0" spacing="15.0">
@@ -64,7 +64,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/Images/Customer_24px.png" />
+                              <Image url="file:/D:/NetBeans/BankAppJFX/src/Images/Customer_24px.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -88,7 +88,7 @@
                      <effect>
                         <ImageInput>
                            <source>
-                              <Image url="file:/C:/Users/Aco%20PC/Documents/NetBeansProjects/BankAppJFX/src/Images/Key_24px.png" />
+                              <Image url="file:/D:/NetBeans/BankAppJFX/src/Images/Key_24px.png" />
                            </source>
                         </ImageInput>
                      </effect>
@@ -105,7 +105,7 @@
                         <DropShadow />
                      </effect>
                     </Button>
-                  <Text onMouseClicked="#signUpAction" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #1D8DE3;" text="Sign Up" wrappingWidth="51.13671875">
+                  <Text onMouseClicked="#signUpAction" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Quicksand; -fx-font-weight: bold; -fx-fill: #1D8DE3; -fx-font-size: 12px;" text="Sign Up" wrappingWidth="55.13665771484375">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>

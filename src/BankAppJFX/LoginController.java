@@ -68,7 +68,6 @@ public class LoginController implements Initializable {
             stage.setY(event.getScreenY() - y);
         }));
     }
-
     @FXML
     public void closeButtonAction(ActionEvent event) {
         ((Stage) closeButton.getScene().getWindow()).close();
@@ -153,4 +152,6 @@ public class LoginController implements Initializable {
             }
         }
     }
+
+    
 }
